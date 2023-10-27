@@ -1,0 +1,143 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 27px;
+      line-height: 1.5;
+    height: 100vh;
+      place-items: center;
+}
+
+header {
+    background-color: #333; 
+    color: white; 
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center; 
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 20px; 
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+
+a {
+	text-decoration: none;
+	color: #18272F;
+	font-weight: 700;
+  position: relative;
+}
+
+a::before {
+  content: '';
+  background-color: hsla(196, 61%, 58%, .75);
+  position: absolute;
+  left: 0;
+  bottom: 3px;
+  width: 100%;
+  height: 8px;
+  z-index: -1;
+  transition: all .3s ease-in-out;
+}
+
+a:hover::before {
+  bottom: 0;
+  height: 100%;
+}
+
+.container {
+    text-align: center;
+    box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;
+    padding: 2em ;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.delete-button {
+  align-items: center;
+  background-color: #ffd4ce;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.delete-button:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.delete-button:hover:after {
+  transform: translate(0, 0);
+}
+
+.delete-button:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.delete-button:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+    .delete-button {
+    padding: 0 40px;
+  }
+}
+
