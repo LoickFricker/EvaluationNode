@@ -11,11 +11,11 @@ const ENVIRONMENT = process.env.APP_ENV
 const LOCALHOST = process.env.APP_LOCALHOST
 
 const server = http.createServer((req, res) => {
-    const { Url, query } = url.parse(req.url);
+    const { pathname, query } = url.parse(req.url);
 
-    if (Url.startsWith('/assets/') && req.method === 'GET') {
+    if (pathname.startsWith('/assets/') && req.method === 'GET') {
 
-        const filePath = `${__dirname}${Url}`
+        const filePath = `${__dirname}${pathname}`
         fs.readFile(filePath, (err, data) => {
 
             if (err) {
@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
 
             } else {
 
-                const type = Url.substring(Url.lastIndexOf('.'))
+                const type = pathname.substring(pathname.lastIndexOf('.'))
                 let contentType = 'text/plain'
 
                 if (type === '.css') {
@@ -38,7 +38,7 @@ const server = http.createServer((req, res) => {
     
     // Page Principale
 
-    } else if (Url === '/' && req.method === 'GET') {
+    } else if (pathname === '/' && req.method === 'GET') {
         const homePage = fs.readFileSync('./view/home.html', 'utf8')
         res.writeHead(200, { 'Content-Type': 'text/html' })
         res.end(homePage);
@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
 
     //Ajout d'un students
 
-    } else if (Url === '/add' && req.method === 'POST') {
+    } else if (pathname === '/add' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk.toString()
@@ -61,7 +61,7 @@ const server = http.createServer((req, res) => {
 
     //Suprimer un students    
 
-    } else if (Url === '/delete' && req.method === 'POST') {
+    } else if (pathname === '/delete' && req.method === 'POST') {
     
         let body = ''
 
@@ -80,7 +80,7 @@ const server = http.createServer((req, res) => {
 
     //Page users (liste des students)
         
-    } else if (Url === '/users' && req.method === 'GET') {
+    } else if (pathname === '/users' && req.method === 'GET') {
 
         const usersPage = fs.readFileSync('./view/users.html', 'utf8')
 
