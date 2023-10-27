@@ -39,9 +39,13 @@ const server = http.createServer((req, res) => {
     // Page Principale
 
     } else if (pathname === '/' && req.method === 'GET') {
+
+        const headerContent = fs.readFileSync('./view/header.html', 'utf8')
         const homePage = fs.readFileSync('./view/home.html', 'utf8')
+        const finalPage = headerContent + homePage 
+
         res.writeHead(200, { 'Content-Type': 'text/html' })
-        res.end(homePage);
+        res.end(finalPage);
 
 
     //Ajout d'un students
@@ -82,19 +86,20 @@ const server = http.createServer((req, res) => {
         
     } else if (pathname === '/users' && req.method === 'GET') {
 
+        const headerContent = fs.readFileSync('./view/header.html', 'utf8')
         const usersPage = fs.readFileSync('./view/users.html', 'utf8')
 
         const userListHTML = utils.students.map(student => {
             return `<li>${student.name} - ${utils.formatBirthdate(student.birth)} <button class="delete-button" data-name="${student.name}">Supprimer</button></li>`;
         }).join('')
 
-        const finalPage = usersPage.replace('{{users}}', userListHTML)
+        const finalPage = headerContent + usersPage.replace('{{users}}', userListHTML)
         res.writeHead(200, { 'Content-Type': 'text/html' })
         res.end(finalPage)
 
     } else {
         res.writeHead(404, { 'Content-Type': 'text/plain' })
-        res.end('Not Found')
+        res.end('page non trouvée :(')
     }
 });
 
